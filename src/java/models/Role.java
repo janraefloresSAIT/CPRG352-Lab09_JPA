@@ -1,6 +1,8 @@
 package models;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable{
     private int rID;
     private String rName;
 
