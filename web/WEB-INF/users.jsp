@@ -35,58 +35,80 @@
                                 </c:otherwise>
                             </c:choose>
                         </td>
-                        <td><a href="user?action=edit&amp;email=${user.email}">Edit</a></td>
-                        <td><a href="user?action=delete&amp;email=${user.email}">Delete</a></td>
+                        <td>
+                            <c:url value="/users" var="editURL">
+                                <c:param name="action" value="edit"/>
+                                <c:param name="email" value="${user.email}"/>
+                            </c:url>
+                            <a href="${editURL}">Edit</a>
+                        </td>
+                        <td>
+                            <c:url value="/users" var="deleteURL">
+                                <c:param name="action" value="delete"/>
+                                <c:param name="email" value="${user.email}"/>
+                            </c:url>
+                            <a href="${deleteURL}">Delete</a>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
         </div>
-        
+
         <div class="addUser">
             <h2>Add User:</h2>
-            <form action="user" method="POST">
+            <form action="" method="POST">
+                <label>First Name:</label>
                 <input type="text" name="addFName" value="${addFName}">
                 <br>
+                <label>Last Name:</label>
                 <input type="text" name="addLName" value="${addLName}">
                 <br>
+                <label>Email:</label>
                 <input type="email" name="addEmail" value="${addEmail}">
-                <br>
-                <input type="password" name="addPassword" value="${addPassword}">
+                <br
+                <label>Password:</label>
+                <input type="password" name="addPass" value="${addPass}">
                 <br>
                 <select name="addRole">
                     <option>Select Role</option>
                     <c:forEach items="${roles}" var="role">
-                       <option ${addRole == "${role.rName}"?"selected":""} value="${role.rName}">${role.rName}</option>
+                        <option ${addRole == "${role.rName}"?"selected":""} value="${role.rName}">${role.rName}</option>
                     </c:forEach>
                 </select>
-                <input type="radio" name="isActive" value="true"> Active
                 <br>
+                <label>User Activity:</label>
+                <input type="radio" name="isActive" value="true"> Active
                 <input type="radio" name="isActive" value="false"> Inactive
                 <br>
                 <input type="submit" value="Add User">
                 <input type="hidden" name="action" value="add">
             </form>
         </div>
-        
+
         <div class="editUser">
             <h2>Edit Selected User:</h2>
-            <form action="user" method="POST">
-                <input type="text" name="editFName" value="${editFName}">
+            <form action="" method="POST">
+                <label>First Name:</label>
+                <input type="text" name="editFName" value="${user.fName}">
                 <br>
-                <input type="text" name="editLName" value="${editLName}">
+                <label>Last Name:</label>
+                <input type="text" name="editLName" value="${user.lName}">
                 <br>
-                <input type="email" name="editEmail" value="${editEmail}">
+                <label>Email:</label>
+                <input type="email" name="editEmail" value="${user.email}">
                 <br>
-                <input type="password" name="editPassword" value="${editPassword}">
+                <label>Password:</label>
+                <input type="password" name="editPass" value="${user.password}">
                 <br>
                 <select name="editRole">
-                    <option>Select New Role</option>
+                    <option>Select Role</option>
                     <c:forEach items="${roles}" var="role">
-                       <option ${editRole == "${role.rName}"?"selected":""} value="${role.rName}">${role.rName}</option>
+                        <option value="${role.rName}">${role.rName}</option>
                     </c:forEach>
                 </select>
-                <input type="radio" name="editActive" value="true"> Active
                 <br>
+                <label>User Activity:</label>
+                <input type="radio" name="editActive" value="true"> Active
                 <input type="radio" name="editActive" value="false"> Inactive
                 <br>
                 <input type="submit" value="Edit User">
