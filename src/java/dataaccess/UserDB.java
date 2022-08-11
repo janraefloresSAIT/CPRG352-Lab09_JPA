@@ -73,7 +73,8 @@ public class UserDB {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
-        String sql = "INSERT INTO user (email, active, fName, lName, password, role) VALUES (?, ?, ?, ?, ?, ?)";
+        
+        String sql = "INSERT INTO user (email, active, first_name, last_name, password, role) VALUES (?, ?, ?, ?, ?, ?)";
         
         try {
             ps = con.prepareStatement(sql);
@@ -94,17 +95,16 @@ public class UserDB {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
-        String sql = "UPDATE user SET email=?, active=?, fName=?, lName=?, password=?, role=? WHERE email=?";
+        String sql = "UPDATE user SET active=?, first_name=?, last_name=?, password=?, role=? WHERE email=?";
         
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, user.getEmail());
-            ps.setBoolean(2, user.isActive());
-            ps.setString(3, user.getfName());
-            ps.setString(4, user.getlName());
-            ps.setString(5, user.getPassword());
-            ps.setInt(6, user.getRole());
-            ps.setString(7, user.getEmail());
+            ps.setBoolean(1, user.isActive());
+            ps.setString(2, user.getfName());
+            ps.setString(3, user.getlName());
+            ps.setString(4, user.getPassword());
+            ps.setInt(5, user.getRole());
+            ps.setString(6, user.getEmail());
             ps.executeUpdate();
         } finally {
             DBUtil.closePreparedStatement(ps);
