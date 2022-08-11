@@ -34,18 +34,18 @@ public class UserServlet extends HttpServlet {
             if (action != null) {
                 if (action.equals("edit")) {
                     String email = request.getParameter("email");
-                    
+
                     User user = us.get(email);
-                    
+
                     request.setAttribute("user", user);
                 } else if (action.equals("delete")) {
                     String email = request.getParameter("email");
-                    
+
                     us.delete(email);
-                    
+
                     users = us.getAll();
                     request.setAttribute("users", users);
-                    
+
                     response.sendRedirect("users");
                     return;
                 }
@@ -71,6 +71,9 @@ public class UserServlet extends HttpServlet {
             List<Role> roles = rs.getAll();
             request.setAttribute("roles", roles);
 
+            List<User> users = us.getAll();
+            request.setAttribute("users", users);
+            
             switch (action) {
                 case "add":
                     String addRName = request.getParameter("addRole");
@@ -90,7 +93,7 @@ public class UserServlet extends HttpServlet {
                             break;
                     }
 
-                    us.insert(request.getParameter("addEmail"), 
+                    us.insert(request.getParameter("addEmail"),
                             Boolean.parseBoolean(request.getParameter("isActive")),
                             request.getParameter("addFName"),
                             request.getParameter("addLName"),
@@ -101,7 +104,7 @@ public class UserServlet extends HttpServlet {
                 case "edit":
                     String editRName = request.getParameter("editRole");
                     int editRID = 0;
-                    
+
                     switch (editRName) {
                         case "system admin":
                             editRID = 1;
@@ -115,13 +118,13 @@ public class UserServlet extends HttpServlet {
                             editRID = 3;
                             break;
                     }
-                    
+
                     us.update(request.getParameter("email"),
                             Boolean.parseBoolean(request.getParameter("editActive")),
                             request.getParameter("editFName"),
                             request.getParameter("editLName"),
                             request.getParameter("editPass"), editRID);
-                    
+
                     break;
             }
         } catch (Exception ex) {

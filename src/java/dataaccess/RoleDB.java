@@ -17,11 +17,11 @@ public class RoleDB {
         }
     }
     
-    public Role getRole(String email) {
+    public Role getRole(int roleId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            Role role = em.find(Role.class, email);
+            Role role = em.find(Role.class, roleId);
             return role;
         } finally {
             em.close();

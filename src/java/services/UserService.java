@@ -23,21 +23,21 @@ public class UserService {
     public void insert(String email, boolean active, String fName, String lName, String password, int roleID) throws Exception {
         User user = new User(email, active, fName, lName, password);
         RoleDB roleDB = new RoleDB();
-        Role role = roleDB.getRole(email);
+        Role role = roleDB.getRole(roleID);
         user.setRole(role);
         UserDB userDB = new UserDB();
         userDB.insert(user);
     }
 
-    public void update(String email, boolean active, String fName, String lName, String password, int roleID) throws Exception {
+    public void update(String email, boolean active, String firstName, String lastName, String password, int roleID) throws Exception {
         UserDB userDB = new UserDB();
         User user = userDB.get(email);
         user.setPassword(password);
         user.setActive(active);
-        user.setFirstName(fName);
-        user.setLastName(lName);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
         RoleDB roleDB = new RoleDB();
-        Role role = roleDB.getRole(email);
+        Role role = roleDB.getRole(roleID);
         user.setRole(role);
         userDB.update(user);
     }

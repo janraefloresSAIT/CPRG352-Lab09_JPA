@@ -21,10 +21,10 @@
                 </tr>
                 <c:forEach items="${users}" var="user">
                     <tr>
-                        <td>${user.fName}</td>
-                        <td>${user.lName}</td>
+                        <td>${user.firstName}</td>
+                        <td>${user.lastName}</td>
                         <td>${user.email}</td>
-                        <td>${user.role}</td>
+                        <td>${user.role.roleName}</td>
                         <td>
                             <c:choose>
                                 <c:when test="${user.active == false}">
@@ -66,13 +66,13 @@
                 <label>Email:</label>
                 <input type="email" name="addEmail" value="${addEmail}">
                 <br
-                <label>Password:</label>
+                    <label>Password:</label>
                 <input type="password" name="addPass" value="${addPass}">
                 <br>
                 <select name="addRole">
                     <option>Select Role</option>
                     <c:forEach items="${roles}" var="role">
-                        <option ${addRole == "${role.rName}"?"selected":""} value="${role.rName}">${role.rName}</option>
+                        <option ${addRole == "${role.roleName}"?"selected":""} value="${role.roleName}">${role.roleName}</option>
                     </c:forEach>
                 </select>
                 <br>
@@ -89,10 +89,10 @@
             <h2>Edit Selected User:</h2>
             <form action="" method="POST">
                 <label>First Name:</label>
-                <input type="text" name="editFName" value="${user.fName}">
+                <input type="text" name="editFName" value="${user.firstName}">
                 <br>
                 <label>Last Name:</label>
-                <input type="text" name="editLName" value="${user.lName}">
+                <input type="text" name="editLName" value="${user.lastName}">
                 <br>
                 <label>Email:</label>
                 <input type="email" name="editEmail" value="${user.email}">
@@ -102,8 +102,8 @@
                 <br>
                 <select name="editRole">
                     <option>Select Role</option>
-                    <c:forEach items="${roles}" var="role">
-                        <option value="${role.rName}">${role.rName}</option>
+                    <c:forEach var="role" items="${roles}">
+                        <option ${editRole == "${role.roleName}"?"selected":""} value="${role.roleName}">${role.roleName}</option>
                     </c:forEach>
                 </select>
                 <br>
