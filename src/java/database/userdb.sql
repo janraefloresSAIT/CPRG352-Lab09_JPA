@@ -36,7 +36,7 @@ INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
 VALUES ('cprg352+admin2@gmail.com', true, 'Admin2','Admin2', 'password', 3);
 
 INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
-VALUES ('cprg352+anne@gmail.com', true, 'Anne','Annerson', 'password', 2
+VALUES ('cprg352+anne@gmail.com', true, 'Anne','Annerson', 'password', 2);
 
 INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
 VALUES ('cprg352+barb@gmail.com', true, 'Barb','Barber', 'password', 2);
